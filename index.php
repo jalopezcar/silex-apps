@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once __DIR__.'/silex.phar';
 
@@ -23,7 +23,7 @@ $app->register(new Silex\Extension\TwigExtension(), array(
 
 $app->get('/', function () use ($app) {
     $sql = "SELECT * FROM project p INNER JOIN module m ON m.project_id = p.id";
-    $apps = $app['db']->executeQuery($sql)->fetchAll(PDO::FETCH_GROUP,'module');
+    $apps = $app['db']->executeQuery($sql)->fetchAll();
 print_r($apps);
     return $app['twig']->render('app.html.twig', array(
         'apps' => $apps,
