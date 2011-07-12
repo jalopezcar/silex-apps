@@ -1,0 +1,28 @@
+
+{% extends 'layout.twig' %}
+
+{% block content %}
+<h2>Añadir una aplicación</h2>
+
+<form method="post" action=""/>
+<table>
+<tr>
+    <td>Nombre</td>
+    <td><input type="text" name="form[name]" value="{{ form.name }}"></td>
+</tr>    
+
+<tr>
+    <td>Url trac</td>
+    <td><input type="text" name="form[url]" value="{{ form.url }}"></td>
+</tr>    
+
+<tr>
+    <td>Url wiki</td>
+    <td><input type="text" name="form[url]" value="{{ form.url }}"></td>
+</tr>  
+</table>
+
+<input type="submit" name="send" value="enviar" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends 'layout.twig' %}
+
+{% block content %}
+<h2>Aplicaciones</h2>
+
+
+{% for app in apps %}
+<li>
+    {{ app.name }} 
+    <a href="{{ app.trac }}">TRAC</a>&nbsp;
+    <a href="{{ app.wiki }}">WIKI</a>
+
+    <table>
+    {% for module in apps.modules %}
+    <tr>
+        <td>{{ module.name }}</td>    
+        <td class="dev"><a href="{{ app.dev }}">{{ app.dev }}</a></td>
+        <td class="trac"><a href="{{ app.trac }}">{{ app.trac }}</a></td>
+        <td class="wiki"><a href="{{ app.wiki }}">{{ app.wiki }}</a></td>
+    </tr>    
+    {% endfor %}
+    </table>
+</li>    
+{% endfor %}
+
+{% endblock %}
