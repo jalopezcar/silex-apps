@@ -2,26 +2,51 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-<h2>Aplicaciones</h2>
+<h2>Aplicaciones - {{ user }}</h2>
 
+<br/><br/>
 
-{% for app in apps %}
+{% if favorites=='all' %}
+	<a class="favorites" href="/index.php/{{ user }}">solo favoritos</a>
+{% else %}
+	<a class="favorites" href="/index.php/{{ user }}/all">mostrar todo</a>
+{% endif %}
+
+<br/><br/>
+
+{% for key,app in apps %}
+{% if favorites=="all" or app.favorite=="true" %}
 <li>
-    {{ app.name }} 
-    <a href="{{ app.trac }}">TRAC</a>&nbsp;
-    <a href="{{ app.wiki }}">WIKI</a>
+    {{ app.title }} 
+	
+	{% set df_trac %}http://dev.map.es/trac/{{key}}browser/trunk{% endset %}
+	{% set df_wiki %}http://dev.map.es/trac/{{key}}/{% endset %}
+	
+	
+    <a href="{{ app.trac | default(df_trac) }}">
+		<img src="/images/subversion.png"></a>&nbsp;
+    
+	<a href="{{ app.wiki | default(df_wiki) }}">
+		<img src="/images/wiki.png"></a>
+	
+	{% if app.favorite=="true" %}
+		<a href="/index.php/favorite/{{ user }}/del/{{ key }}/{{ favorites | default("false") }}"><img src="/images/favorite.png"></a>
+	{% else %}
+		<a href="/index.php/favorite/{{ user }}/add/{{ key }}/{{ favorites | default("false") }}"><img src="/images/unfavorite.png"></a>
+	{% endif %}
 
-    <table>
-    {% for module in apps.modules %}
+    <table class="module">
+    {% for module_name,module in app.modules %}
     <tr>
-        <td>{{ module.name }}</td>    
-        <td class="dev"><a href="{{ app.dev }}">{{ app.dev }}</a></td>
-        <td class="trac"><a href="{{ app.trac }}">{{ app.trac }}</a></td>
-        <td class="wiki"><a href="{{ app.wiki }}">{{ app.wiki }}</a></td>
+        <td>{{ module.title | default(module_name) }} </td>    
+		<td class="dev"><a href="{{ module.dev }}">{{ module.dev }}</a></td>
+        <td class="pre"><a href="{{ module.pre }}">{{ module.pre }}</a></td>
+        <td class="pro"><a href="{{ module.pre }}">{{ module.pro }}</a></td>
     </tr>    
     {% endfor %}
     </table>
 </li>    
+{% endif %}
 {% endfor %}
 
 {% endblock %}

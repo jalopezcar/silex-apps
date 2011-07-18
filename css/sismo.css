@@ -44,7 +44,7 @@ h2 {
 }
 
 #content, footer {
-    width: 780px;
+    width: 90%;
     margin: 0 auto;
     background: #274751;
     padding: 15px 24px;
@@ -233,8 +233,10 @@ footer a {
 .ansi_color_bg_cyan    { background-color: cyan; }
 .ansi_color_bg_white   { background-color: white; }
 
-
-table td.dev  a { color:red }
-table td.trac a { color:magenta }
-table td.wiki a { color:yellow }
+a.favorites { color: yellow;}
+table.module {margin-left:20px; margin-top:10px; margin-bottom:30px;}
+table.module td { padding:2px 10px;}
+table.module td.dev  a { color:green }
+table.module td.pre a { color:cyan }
+table.module td.pro a { color:yellow }
 
