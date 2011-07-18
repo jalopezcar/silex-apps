@@ -1,0 +1,11 @@
+app1:
+    title: App1
+    trac: 
+    wiki: 
+    modules:
+        frontend:
+            pre: https://app1/front
+            pro: https://app1.pro/front
+        backend:
+            pre: https://back.app1
+            pro: https://back.app1.pro

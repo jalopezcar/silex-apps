@@ -1,0 +1,4 @@
+app1:
+  favorite: true
+  modules: { frontend: { dev: 'http://app1.local }, backend: { dev: 'http://app1.local' } }
+
